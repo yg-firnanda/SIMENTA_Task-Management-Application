@@ -1,0 +1,80 @@
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="form">
+                <div class="left-side">
+                    <!-- daftar sesi -->
+                    <div class="signup-form s_form">
+                        <div class="logo">
+                            <img src="/images/logo-png.png">
+                            <h4>Daftar Akun Baru</h4>
+                            <p>pastikan untuk memasukan data dengan benar untuk mendaftar</p>
+                        </div>
+
+                        <!-- daftar sesi 1 biodata umum -->
+                        <form action="/auth/daftar" method="POST" class="needs-validation" novalidate>
+                            <div class="main">
+                                <div class="input-group has-validation mb-2">
+                                    <input type="text" placeholder="Nama Lengkap" name="nama" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        *Nama Lengkap Wajib diisi
+                                    </div>
+                                </div>
+
+                                <div class="input-group has-validation mb-2">
+                                    <input type="email" placeholder="Email" name="email" class="form-control" id="validationCustomEmail" aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        *Email Wajib diisi (abc@gmail.com)
+                                    </div>
+                                </div>
+
+                                <div class="input-group has-validation mb-2">
+                                    <input type="text" placeholder="NPM" name="npm" class="form-control" id="validationCustomNPM" aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        *NPM Wajib diisi
+                                    </div>
+                                </div>
+
+                                <div class="input-group has-validation mb-4">
+                                    <input type="password" placeholder="Buat Password Yang Unik" name="password" class="form-control" id="validationCustomPassword" aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        *Password Wajib diisi
+                                    </div>
+                                </div>
+                                
+                                <div class="buttons">
+                                    <button type="submit" name="submit" class="submit_button">Daftar</button>
+                                </div>
+
+                                <div class="row mt-2 rb-responsive">
+                                    <div class="col-12">
+                                        <p style="text-align: center;">Sudah punya akun? <a href="/auth/masuk">Masuk</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end daftar sesi -->
+                </div>
+
+                <!-- daftar side -->
+                <div class="right-side">
+                    <div class="cover-image">
+                        <img class="right_img" src="/images/login.jpg">
+                    </div> 
+
+                    <div class="header">
+                        <p class="account">Sudah punya akun? <a href="/auth/masuk">Masuk</a></p>
+                    </div>
+                    
+                    <div class="right_text">
+                        <h2>Sistem Informasi Manajemen<br>Tugas Kuliah</h2>
+                        <p>Mengelola tugas kuliah pada masing2 matakuliah yang sudah diambil.</p>
+                    </div>
+                </div>
+                <!-- daftar side -->
+            </div>
+        </div>
+    </div>
+</body>

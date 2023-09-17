@@ -1,0 +1,86 @@
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Edit Tugas</h3>
+                <p class="text-subtitle text-muted">Anda bisa mengedit jadwal tugas kuliah anda pada form ini</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin">Beranda</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Tugas Kuliah</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Form Edit Tugas Kuliah</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="/admin/edit" method="POST" class="form">
+                                <div class="row">
+                                    <input type="hidden" name="taskId" value="<%= task.id %>">
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="mata-kuliah">Mata Kuliah</label>
+                                            <input type="text" id="mata-kuliah" class="form-control"
+                                                placeholder="Mata Kuliah" name="mata_kuliah" value="<%= task.mata_kuliah %>" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="dosen-pengampu">Dosen Pengampu</label>
+                                            <input type="text" id="dosen-pengampu" class="form-control"
+                                                placeholder="Dosen Pengampu" name="dosen" value="<%= task.dosen %>" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label for="deskripsi-tugas">Deskripsi Tugas</label>
+                                            <textarea class="form-control" name="deskripsi" id="deskripsi-tugas" cols="30" rows="10" placeholder="Masukkan deskripsi tugas kuliah anda" ><%= task.deskripsi %></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="deadline">Deadline Tugas</label>
+                                            <input type="hidden" name="oldDate" value="<%= task.deadline %>">
+                                            <input type="date" id="deadline" class="form-control" name="deadline" value="<%= task.deadline %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="status">Status Tugas</label> <br>
+                                            <input type="radio" class="btn-check" name="status" value="selesai" id="success-outlined"
+                                            autocomplete="off" <%= task.status == "selesai" ? "checked" : "" %> required>
+                                            <label class="btn btn-outline-success" for="success-outlined">Selesai</label>
+
+                                            <input type="radio" class="btn-check" name="status" value="belum" id="danger-outlined"
+                                            autocomplete="off" <%= task.status == "belum" ? "checked" : "" %> required>
+                                            <label class="btn btn-outline-danger" for="danger-outlined">Belum</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex mt-3">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Perbarui</button>
+                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    document.querySelector('#tambahTugas').classList.add('active');
+</script>

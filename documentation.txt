@@ -1,0 +1,86 @@
+>> Solved Problem
+1. Kendala menampilkan halaman edit dan detail, ternyata terdapat kesalahn penulisan pada admin-nav.ejs, yakni penambahan '/' diawal URL
+>> Salah
+<a href="admin/edit/<%= task.id %>""></a> = admin/admin/edit/1 (double admin URL)
+
+>> Benar
+<a href="/admin/edit/<%= task.id %>""></a> = admin/edit/1
+
+2. Lupa menambahkan next pada is-auth middleware
+
+>> HINT KNOWLEDGE 1
+jika saya membutuhkan data pengguna (seperti nama) di banyak halaman, maka cukup mengirim data pengguna sekali saja pada middleware yang dijalankan sebelum rute-rute yang membutuhkan informasi pengguna. Dalam kasus saya, saya sudah mengirimkan data pengguna pada middleware ini:
+app.use((req, res, next) => {
+    if (!req.session.user) {
+        next();
+    } else {
+        User.findByPk(req.session.user.id)
+            .then(user => {
+                req.user = user;
+                next();
+            })
+            .catch(err => console.log(err));
+    }
+});
+Dengan mengatur req.user = user, saya telah membuat data pengguna tersedia di req object, sehingga dapat diakses di rute-rute selanjutnya. saya juga telah menambahkan res.locals.isAuthenticated dalam middleware ini untuk mensayai apakah pengguna sedang masuk atau tidak. Dengan pengaturan ini, saya dapat mengakses data pengguna dalam rute-rute berikutnya seperti req.user.name, req.user.email, dll. Tanpa perlu mengirimnya secara eksplisit di setiap rute. Sebagai contoh, dalam controller getAdd, saya dapat mengakses data pengguna seperti ini:
+exports.getAdd = (req, res) => {
+    console.log(req.user.name); // Contoh penggunaan data pengguna
+    res.render('admin/add', {
+        pageTitle: 'Add Task',
+        layout: 'layouts/admin-layout.ejs'
+    });
+};
+Sama halnya dengan rute-rute lainnya seperti getEdit, saya dapat menggunakan req.user untuk mengakses data pengguna di halaman tersebut. Jadi, saya hanya perlu mengirim data pengguna satu kali melalui middleware tersebut, dan data pengguna akan tersedia di seluruh rute yang membutuhkannya.
+
+>> HINT KNOWLEDGE 2
+[postEditPassword]Di dalam blok .then(user => { ... }), Anda perlu mengganti User.save() menjadi user.save() untuk menyimpan perubahan password pada objek user yang ditemukan.
+
+>> FLOW
+--> Retrieve session.isLoggedIn from the authController, then we pass through the app.js(Send to the locals of isAuthenticated) and is-auth(checking user already login or not). Whenever we can use isAuthenticated to the EJS maybe for checking or other.
+--> req.session.user value will be get after user login, then the value will pass through the app.js file to check by middleware.
+--> req.user retrievied by filtering User model by the PK of rew.session.user.id, then we pass the result as req.user
+--> userId is retrieve from the Task table, we already do the association before as we know that we generate association belongsTo between User and Task, it will generate new field called userId, we use userId to ...
+=== <Deploying an App> ===
+--> Conecting env to our app. We need to change important data as variable use ${ } in our app, then we fill the variable with data as value in nodemon.json file
+{
+    "env": {...} <--- variable and data pairs then pass to the entire file with new variable name
+}
+After this all we need to do is create new script in package.json with this script example
+"start": "NODE_ENV=production MYSQL_DATABASE_NAME=proyek_pribadi MYSQL_DATABASE_USERNAME=root MYSQL_DATABASE_PASSWORD=\"\" node app.js",
+
+>> TO-DO
+*??[FINISHED] Memastikan semua CRUD task berjalan dengan baik
+*[FINISHED] Pada postEdit Controller,tTambahkan logic if user tidak mengisi date saat edit, maka gunakan date yang lalu. Jika mengisi gunakan date terbaru
+*[FINISHED] pada halaman detail format mm/dd/yyyy atau sejenisnya mengambil dari DB kemudian dimasukan satu per satu sebagai data di viewa
+output: [February 29, 2023] ATAU [3 hari tersisa]
+*?? Menambahkan session saat login dan memastikan session bekerja
+*?? Add isAuth in admin routes
+*?? Tambahkan Authorization
+*?? Menambahkan foto_url field di profil
+*?? Membuat halaman profil bekerja, mulai dari edit dan hapus
+*?? Deploy an App
+
+>> Needs Improvement : 
+- Add validation
+- Add flash message
+- URL of detail page should not an id, it must be slug or other unique things, something user cant guess. The dilema is, i need to use findByPk method to render a detail page, and the primary-key is only in id field right now, sometimes i'll do some experiments to solve this. In my opinion i hope i can use /admin/detial?index=i ; However, i is an iteration for the task, and query is how i render page depends an iteration, in the same time req.params is necessary to pass it to the findByPk method.
+
+
+
+
+
+
+
+
+
+>> vercel.json
+{
+    "version": 2,
+    "name": "SIMENTA",
+    "builds": [
+        { "src": "app.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+        { "src": "/(.*)", "dest": "/app.js" }
+    ]
+}

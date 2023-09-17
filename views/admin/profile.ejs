@@ -1,0 +1,165 @@
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Profile Anda</h3>
+                <p class="text-subtitle text-muted">anda bisa melihat secara detail data akun anda</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin">Beranda</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- // Basic multiple Column Form section start -->
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="title">Profile Akun</h4>
+                        <h4 id="titleUbah" class="card-title d-none">Ubah Akun Profile</h4>
+                        <h4 id="titlePass" class="card-title d-none">Ubah Password Akun</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="/admin/profil/edit" method="POST" id="formProfile">
+                                <div class="row">
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            Nama Lengkap
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" name="nama" disabled type="text" value="<%= user.nama %>" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            NPM
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" name="npm" disabled type="number" value="<%= user.npm %>" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            Email
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" name="email" disabled type="email" value="<%= user.email %>" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            URL Foto
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" name="foto_url" disabled type="foto_url" value="<%= user.foto_url %>">
+                                        </div>
+                                    </div>
+
+                                    <div id="passField" class="col-md-12 row mb-2 d-none">
+                                        <div class="col-4">
+                                            Password
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" name="password" placeholder="Masukkan Password Untuk Merubah Data" type="password" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex mt-3">
+                                        <button type="button" id="ubahProfile" class="btn btn-warning me-1 mb-1">Ubah Informasi Akun</button>
+                                        <button type="button" id="ubahPassword" class="btn btn-danger me-1 mb-1">Ubah Password</button>
+                                        <button id="saveBtn" type="submit" name="submit" class="btn btn-primary me-1 mb-1 d-none">Simpan</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form action="/admin/profil/change-password" method="POST" class="d-none" id="formPass">
+                                <div class="row">
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            Password Lama
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" placeholder="Masukkan Password Lama Anda" name="oldPw" type="text" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            Konfirmasi Password Lama
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" placeholder="Masukkan Password Lama Anda Sekali Lagi" name="oldPwConf" type="text" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            Password Baru
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" name="newPw" placeholder="Masukkan Password Baru" type="password" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex mt-3">
+                                        <button type="submit" name="submitPass" class="btn btn-primary me-1 mb-1">Ubah Password</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // Basic multiple Column Form section end -->
+</div>
+
+<script>
+    var titleUbah = document.querySelector('#titleUbah');
+    var titlePass = document.querySelector('#titlePass');
+    var title = document.querySelector('#title');
+    var ubahProfile = document.querySelector('#ubahProfile');
+    var passField = document.querySelector('#passField');
+    var saveBtn = document.querySelector('#saveBtn');
+    var ubahPass = document.querySelector('#ubahPassword');
+    var ubahPassword = document.querySelectorAll('#ubahPassword');
+    var profileField = document.querySelectorAll('#formProfile input');
+    var formProfile = document.querySelector('#formProfile');
+    var formPass = document.querySelector('#formPass');
+
+    ubahProfile.addEventListener('click',function(){
+
+        profileField.forEach(function(form){
+            form.disabled = false
+        });
+
+        passField.classList.remove('d-none');
+        titleUbah.classList.remove('d-none');
+        title.classList.add('d-none');
+        saveBtn.classList.remove('d-none');
+        ubahPass.classList.add('d-none');
+        ubahProfile.classList.add('d-none');
+    });
+
+    ubahPass.addEventListener('click',function(){
+            
+        formProfile.classList.add('d-none')
+        formPass.classList.remove('d-none')
+        titlePass.classList.remove('d-none')
+        title.classList.add('d-none')
+        passField.classList.remove('d-none')
+        saveBtn.classList.remove('d-none')
+        ubahPass.classList.add('d-none')
+        ubahProfile.classList.add('d-none')
+    });
+</script>

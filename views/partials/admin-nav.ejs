@@ -1,0 +1,153 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMENTA Admin Dashboard</title>
+    
+    <link rel="stylesheet" href="/css/main/app.css">
+    <link rel="stylesheet" href="/css/main/app-dark.css">
+    <link rel="shortcut icon" href="/images/logo-icon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/logo-icon.jpg" type="image/png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        .navbar-white {
+            margin-left: 300px;
+            background-color: #fff;
+
+        }
+        body.theme-dark .navbar-white{
+            background-color: #1e1e2d;
+        }
+        body.theme-dark .text-gray-600{
+            color: #fff!important;
+        }
+        .content-padding{
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header position-relative">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="logo">
+                            <a href="/admin"><img style="width: 100px; height: auto;" src="/images/logo-png.png" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                            <i class='bx bx-sun bx-sm' ></i>
+                            <div class="form-check form-switch fs-6">
+                                <input class="form-check-input  me-0" type="checkbox" id="toggle-dark" >
+                                <label class="form-check-label" ></label>
+                            </div>
+                            <i class='bx bx-moon bx-sm'></i>
+                        </div>
+                        <div class="sidebar-toggler  x">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+                
+                        <li class="sidebar-item" id="home">
+                            <a href="/admin" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                
+                        <li class="sidebar-item" id="daftarTugas">
+                            <a href="/admin/tugas" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>Daftar Tugas Kuliah</span>
+                            </a>
+                        </li>
+                
+                        <li class="sidebar-item" id="tambahTugas">
+                            <a href="/admin/tambah" class='sidebar-link'>
+                                <i class="fa fa-plus"></i>
+                                <span>Tambah Tugas Kuliah</span>
+                            </a>
+                        </li>
+                
+                        <li class="sidebar-item " id="keluarUser">
+                            <form action="/auth/keluar" method="post" class='sidebar-link position-absolute w-100 text-danger' style="top: 13.5rem; cursor: pointer;">
+                                <button type="submit" class="border-0 bg-transparent">
+                                    <i class="fa-solid fa-right-from-bracket text-danger"></i>
+                                    <span class="text-danger">Keluar</span>
+                                </button>
+                            </form>
+                                
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        <div id = "main" class='layout-navbar'>
+            <header class='mb-3'>
+                <nav class="navbar navbar-expand navbar-light navbar-top">
+                    <div class="container-fluid">
+                        <a href="#" class="burger-btn d-block">
+                            <i class="bi bi-justify fs-3"></i>
+                        </a>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-lg-0">
+                                
+                            </ul>
+                            <div class="dropdown">
+                                <a href="/admin/profil" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="user-menu d-flex">
+                                        <div class="user-name text-end me-3">
+                                            <h6 class="mb-0 text-gray-600"><%= user.nama %></h6>
+                                            <p class="mb-0 text-sm text-gray-600">Mahasiswa</p>
+                                        </div>
+                                        <div class="user-img d-flex align-items-center">
+                                            <div class="avatar avatar-md">
+                                                <img src="<%= user.foto_url ? user.foto_url : '/images/avatar.jpg' %>" style="object-fit: cover">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
+                                    <li>
+                                        <h6 class="dropdown-header">Halo, <%= user.nama %></h6>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/admin/profil">
+                                            <i class="icon-mid bi bi-person me-2"></i> Profil Saya
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <form action="/auth/keluar" method="post">
+                                            <input type="hidden" name="keluar">
+                                            <div class="dropdown-item">
+                                                <button type="submit" class="border-0 bg-transparent"><i class="icon-mid bi bi-box-arrow-left position-relative" style="left: -.5rem;"></i> Keluar</button>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div class="content-padding">

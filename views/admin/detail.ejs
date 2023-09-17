@@ -1,0 +1,87 @@
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Detail Tugas</h3>
+                <p class="text-subtitle text-muted">anda bisa melihat detail dan deadline tugas kuliah anda</p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/admin">Beranda</a></li>
+                        <li class="breadcrumb-item" aria-current="page">Daftar Tugas Kuliah</li>
+                        <li class="breadcrumb-item active" aria-current="page">Detail Tugas Kuliah</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Detail Tugas Kuliah</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form action="/admin/tugas" method="POST" class="form">
+                                <div class="row">
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            Mata Kuliah
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" disabled type="text" value="<%= task.mata_kuliah %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            Dosen Pengampu Mata Kuliah
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-control" disabled type="text" value="<%= task.dosen %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 row mb-2">
+                                        <div class="col-4">
+                                            Deadline
+                                        </div>
+                                        <div class="col-3">
+                                            <input class="form-control" disabled type="text" value="<%- task.timeLeft %> ">
+                                        </div>
+                                        <div class="col-2">
+                                            <p style="text-align: center;" class="mt-1">atau</p>
+                                        </div>
+                                        <div class="col-3">
+                                            <% const months = ['Januari', 'Februari','Maret', 'April', 'Mei', 'Juni', 'Juli','Agustus', 'September', 'Oktober', 'November', 'Desember']; %>
+                                            <input class="form-control" disabled type="text" value="<%= task.deadline.getDate() %> <%= months[task.deadline.getMonth()] %> <%= task.deadline.getFullYear() %>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 row">
+                                        <div class="col-4">
+                                            Deskripsi Tugas
+                                        </div>
+                                        <div class="col-8">
+                                            <textarea class="form-control" disabled cols="30" rows="10"><%= task.deskripsi %></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-flex mt-3">
+                                        <a href="/admin/edit/<%= task.id %>" class="btn btn-warning me-1 mb-1">Edit</a>
+                                        <a href="/admin/tugas" class="btn btn-primary me-1 mb-1">Kembali</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    document.querySelector('#detailTugas').classList.add('d-block');
+    document.querySelector('#detailTugas').classList.add('active');
+</script> -->

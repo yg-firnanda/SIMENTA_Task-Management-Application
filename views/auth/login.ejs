@@ -1,0 +1,65 @@
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="form">
+                <div class="left-side">
+                    <!-- daftar sesi -->
+                    <div class="signup-form s_form">
+                        <div class="logo">
+                            <img src="/images/logo-png.png">
+                            <h4>Masuk ke Akun Anda</h4>
+                            <p>silahkan masuk ke akun anda untuk mengakses aplikasi</p>
+                        </div>
+
+                        <!-- daftar sesi 1 biodata umum -->
+                        <form action="/auth/masuk" method="POST" class="needs-validation" novalidate>
+                            <div class="main">
+                                <div class="input-group has-validation mb-2">
+                                    <input type="text" placeholder="Email" name="email" class="form-control" id="validationNPM" aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        *Email Wajib diisi
+                                    </div>
+                                </div>
+
+                                <div class="input-group has-validation mb-4">
+                                    <input type="password" placeholder="Password" name="password" class="form-control" id="validationPassword" aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        *Password Wajib diisi
+                                    </div>
+                                </div>
+
+                                <div class="buttons sign_button">
+                                    <button type="submit" name="submit">Login</button>
+                                </div>
+
+                                <div class="row mt-2 rb-responsive">
+                                    <div class="col-12">
+                                        <p style="text-align: center;">Belum punya akun? <a href="/auth/daftar">Daftar</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end daftar sesi -->
+                </div>
+
+                <!-- masuk side -->
+                <div class="right-side">
+                    <div class="cover-image">
+                        <img class="right_img" src="/images/signup.jpg">
+                    </div> 
+
+                    <div class="header">
+                        <p class="account">Tidak punya akun? <a href="/auth/daftar">Daftar</a></p>
+                    </div>
+                    
+                    <div class="right_text">
+                        <h2>Sistem Informasi Manajemen<br>Tugas Kuliah</h2>
+                        <p>Mengelola tugas kuliah pada masing2 matakuliah yang sudah diambil.</p>
+                    </div>
+                </div>
+                <!-- daftar side -->
+            </div>
+        </div>
+    </div>
+</body>
