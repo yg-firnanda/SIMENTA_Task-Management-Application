@@ -79,5 +79,5 @@ Aplikasi akan berjalan di http://localhost:3000.
    - Setiap pengguna hanya dapat melihat dan mengelola tugas yang mereka miliki.
 
 ## Preview
-![screencapture-localhost-3000-admin-tugas-2023-09-17-20_23_13](https://github.com/yg-firnanda/SIMENTA_Task-Management-Application/assets/82860149/1685b221-f63b-4dd8-b3c4-ccc5afd64cad)
-![screencapture-localhost-3000-admin-tambah-2023-09-17-20_21_36](https://github.com/yg-firnanda/SIMENTA_Task-Management-Application/assets/82860149/917e7f9d-9a54-4a5b-b951-add286e36000)
+![screencapture-localhost-3000-admin-tugas-2023-09-17-20_23_13](https://github.com/yg-firnanda/SIMENTA_Task-Management-Application/assets/82860149/751aea71-787a-4d24-8d09-df4f07833cfc)
+![screencapture-localhost-3000-admin-tambah-2023-09-17-20_21_36](https://github.com/yg-firnanda/SIMENTA_Task-Management-Application/assets/82860149/e5f26e6a-b352-4d25-921c-9e1659858352)
