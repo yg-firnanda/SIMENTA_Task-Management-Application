@@ -75,7 +75,6 @@ Aplikasi akan berjalan di http://localhost:3000.
    - Registrasi dan masuk pengguna.
    
 3. **Otorisasi**
-   - Pengguna memiliki hak akses terbatas sesuai peran (mis. Pengguna biasa, Admin).
    - Setiap pengguna hanya dapat melihat dan mengelola tugas yang mereka miliki.
 
 ## Preview
